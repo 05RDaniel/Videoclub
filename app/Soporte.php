@@ -30,12 +30,12 @@
         {
             $precio_iva = $this->precio * self::IVA;
             $precio_iva_total = $this->precio + $precio_iva;
-            echo $precio_iva_total;
+            return $precio_iva_total;
         }
 
         public function muestraResumen()
         {
-            echo "<p>Titulo: $this->titulo<br>" . "Numero: $this->numero<br>" . "Precio: $this->precio<br>" . "Precio con iva: </p>";
+            echo "<p>Titulo: $this->titulo<br>" . "Numero: $this->numero<br>" . "Precio: $this->precio<br>" . "Precio con iva: " . $this->getPrecioIVA() . "</p>";
         }
     }
 ?>
