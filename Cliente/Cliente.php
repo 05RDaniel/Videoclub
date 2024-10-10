@@ -1,4 +1,5 @@
 <?php
+include "Soporte.php";
 class Cliente
 {
     public $nombre;
@@ -14,20 +15,51 @@ class Cliente
         $this->maxAlquilerConcurrente = $mAC;
     }
 
-    public function getNombre(){
-            return $this->nombre;
-    }
-    public function setNombre($n){
-        $this->nombre = $n;
-    }
-    public function getNumSoportesAlquilados(){
-            return $this->numSoportesAlquilados;
+    public function getNombre()
+    {
+        return $this->nombre;
     }
 
-    public function muestraResumen(){
-        for ($i=0;$i<=count($soportesAlquilados);$i++){
-            echo "Nombre del cliente: $this->nombre \n"; 
+    public function setNombre($n)
+    {
+        $this->nombre = $n;
+    }
+
+    public function getNumSoportesAlquilados()
+    {
+        return $this->numSoportesAlquilados;
+    }
+
+    public function muestraResumen()
+    {
+        echo "Nombre: $this->nombre\n";
+        echo "Número: ", count($this->soportesAlquilados), "\n";
+    }
+
+    public function tieneAlquilado(Soporte $s):bool
+    {
+        if (empty($this->soportesAlquilados)) {
+            return false;
+        } else {
+            foreach ($soportesAlquilados as $val) {
+                if ($val == $s) {
+                    return true;
+                }
+            }
         }
+        return false;
+    }
+
+    public  function alquilar(Soporte $s):bool
+    {
+        if (count($this->soportesAlquilados) < $this->maxAlquilerConcurrente) {
+            if (!$this->tieneAlquilado($s)) {
+                $this->soportesAlquilados[] = $s;
+                $this->numSoportesAlquilados++;
+                return true;
+                echo "Elemento añadido satisfactoriamente";
+            } else {echo "El elemento ya se encuentra alquilado por este usuario";}
+        } else {echo "Número de alquileres máximo alcanzado, no es posible añadir más";}
+    return false;
     }
 }
-?>
