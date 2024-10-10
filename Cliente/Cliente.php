@@ -26,7 +26,7 @@ class Cliente
 
     public function muestraResumen(){
         for ($i=0;$i<=count($soportesAlquilados);$i++){
-            echo "Nombre del cliente: $this->nombre \n";
+            echo "Nombre del cliente: $this->nombre \n"; 
         }
     }
 }
