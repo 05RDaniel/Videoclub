@@ -9,9 +9,11 @@
     <h1>Test de clases</h1>
     <?php
         include "Soporte.php";
-       $unJuego = new Soporte("Red dead redemption 2", 26, 35);
+        
+        $unJuego = new Soporte("Red dead redemption 2", 26, 35);
+        var_dump($unJuego);
 
-       $unJuego->muestraResumen();
+        $unJuego->muestraResumen();
     ?>
 </body>
 </html>

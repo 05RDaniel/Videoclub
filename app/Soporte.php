@@ -3,7 +3,7 @@
         public $titulo;
         protected $numero;
         private $precio;
-        private static const IVA = 0.21;
+        private static $IVA = 0.21;
 
         public function __construct($t, $n, $p)
         {
@@ -12,30 +12,26 @@
             $this->precio = $p;  
         }
 
-        public function getPrecio($name)
+        public function getPrecio()
         {
-            if ($name == 'pre') {
-                return $this->precio;
-            }
+            return $this->precio;
         }
 
-        public function getNumero($name) 
+        public function getNumero() 
         {
-            if ($name == 'num') {
-                return $this->numero;
-            }
+            return $this->numero; 
         }
 
         public function getPrecioIVA() 
         {
-            $precio_iva = $this->precio * self::IVA;
+            $precio_iva = $this->precio * self::$IVA;
             $precio_iva_total = $this->precio + $precio_iva;
             return $precio_iva_total;
         }
 
         public function muestraResumen()
         {
-            echo "<p>Titulo: $this->titulo<br>" . "Numero: $this->numero<br>" . "Precio: $this->precio<br>" . "Precio con iva: " . $this->getPrecioIVA() . "</p>";
+            echo "Numero: " . $this->getNumero() . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA() . "</p>";
         }
     }
 ?>
