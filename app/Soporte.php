@@ -3,7 +3,7 @@
         public $titulo;
         protected $numero;
         private $precio;
-        private static $IVA = 0.21;
+        private static $IVA = 0.21;//Constante del IVA
 
         public function __construct($t, $n, $p)
         {
@@ -12,16 +12,19 @@
             $this->precio = $p;  
         }
 
+        //Metodo para obtener el precio
         public function getPrecio()
         {
             return $this->precio;
         }
 
+        //Metodo para obtener el numero
         public function getNumero() 
         {
             return $this->numero; 
         }
 
+        //Metodo que calcula el precio con el IVA
         public function getPrecioIVA() 
         {
             $precio_iva = $this->precio * self::$IVA;

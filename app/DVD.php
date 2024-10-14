@@ -9,7 +9,7 @@
         public function muestraResumen()
         {
             parent::muestraResumen();
-            echo "<p>Idiomas disponibles: " . $this->idiomas . " Formato de la pantalla: " . $this->formatPantalla . "</p>";
+            echo "<p>Idiomas disponibles: " . $this->idiomas . "<br>" . " Formato de la pantalla: " . $this->formatPantalla . "</p>";
         }
     }
 ?>

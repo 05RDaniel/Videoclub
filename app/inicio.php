@@ -8,10 +8,11 @@
 <body>
     <h1>Test de clases</h1>
     <?php
+        //Banco de pruebas para las clases
         include "Soporte.php";
+        include "CintaVideo.php";
         
-        $unJuego = new Soporte("Red dead redemption 2", 26, 35);
-        var_dump($unJuego);
+        $unJuego = new CintaVideo("Driver", 26, 35, 120);
 
         $unJuego->muestraResumen();
     ?>

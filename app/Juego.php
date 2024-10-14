@@ -6,6 +6,7 @@
             parent::__construct($t, $n, $p);
         }
 
+        //Metodo que comprueba el numero de jugadores que pueden jugar a los juegos
         public function muestraJugadoresPosibles() {
             if ($this->minNumJugadores == 1 && $this->maxNumJugadores == 0) {
                 echo "El juego es para 1 jugador.";
@@ -21,7 +22,7 @@
         public function muestraResumen()
         {
             parent::muestraResumen();
-            echo "<p>Tipo de consola: " . $this->console . " Numero de jugadores: " . $this->muestraJugadoresPosibles() . "</p>";
+            echo "<p>Tipo de consola: " . $this->console . "<br>" . $this->muestraJugadoresPosibles() . "</p>";
         }
     }
 ?>
