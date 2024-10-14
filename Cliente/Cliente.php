@@ -1,5 +1,4 @@
 <?php
-include "Soporte.php";
 class Cliente
 {
     public $nombre;
@@ -15,14 +14,14 @@ class Cliente
         $this->maxAlquilerConcurrente = $mAC;
     }
 
-    public function getNombre()
+    public function getNumero()
     {
-        return $this->nombre;
+        return $this->numero;
     }
 
-    public function setNombre($n)
+    public function setNumero($n)
     {
-        $this->nombre = $n;
+        $this->numero = $n;
     }
 
     public function getNumSoportesAlquilados()
@@ -41,7 +40,7 @@ class Cliente
         if (empty($this->soportesAlquilados)) {
             return false;
         } else {
-            foreach ($soportesAlquilados as $val) {
+            foreach ($this->soportesAlquilados as $val) {
                 if ($val == $s) {
                     return true;
                 }
@@ -56,13 +55,13 @@ class Cliente
             if (!$this->tieneAlquilado($s)) {
                 $this->soportesAlquilados[] = $s;
                 $this->numSoportesAlquilados++;
+                echo "Elemento añadido satisfactoriamente<br>";
                 return true;
-                echo "Elemento añadido satisfactoriamente";
             } else {
-                echo "El elemento ya se encuentra alquilado por este usuario";
+                echo "El elemento ya se encuentra alquilado por este usuario<br>";
             }
         } else {
-            echo "Número de alquileres máximo alcanzado, no es posible añadir más";
+            echo "Número de alquileres máximo alcanzado, no es posible añadir más<br>";
         }
         return false;
     }
@@ -70,22 +69,23 @@ class Cliente
     public function devolver(int $NumSoporte): void 
     {
         $found = -1;
-        for ($i=0;$i<count($soportesAlquilados);$i++){
-            if ($soportesAlquilados[$i]['numero']==$NumSoporte){
+        for ($i=0;$i<count($this->soportesAlquilados);$i++){
+            if ($this->soportesAlquilados[$i]->getNumero()==$NumSoporte){
                 $found = $i;
             }
         }
         if ($found > -1){
             unset($soportesAlquilados[$i]);
             $this->numSoportesAlquilados--;
-            echo "Elemento devuelto";
-        } else {echo "El elemento no está alquilado por este usuario";}
+            echo "Elemento devuelto<br>";
+        } else {echo "El elemento no está alquilado por este usuario<br>";}
     }
 
-    public function listarAlquileres(){
-        echo "El usuario tiene ".count($soportesAlquilados)." soportes alquilados<br>";
+    public function listaAlquileres(){
+        echo "El usuario tiene ".count($this->soportesAlquilados)." soportes alquilados:<ul>";
         foreach ($this->soportesAlquilados as $val) {
-            echo $val->titulo.", ";
+            echo "<li>".$val->titulo."</li>";
             }
+            echo "</ul>";
     }
 }
