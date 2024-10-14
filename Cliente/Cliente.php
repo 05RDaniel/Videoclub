@@ -75,7 +75,7 @@ class Cliente
             }
         }
         if ($found > -1){
-            unset($soportesAlquilados[$i]);
+            unset($this->soportesAlquilados[$i]);
             $this->numSoportesAlquilados--;
             echo "Elemento devuelto<br>";
         } else {echo "El elemento no está alquilado por este usuario<br>";}
