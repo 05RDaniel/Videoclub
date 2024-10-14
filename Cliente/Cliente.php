@@ -6,11 +6,13 @@ class Cliente
     private $soportesAlquilados = [];
     private $numSoportesAlquilados;
     private $maxAlquilerConcurrente;
+    private static $numTotal;
 
-    public function __construct($n, $num, $mAC = 3)
+    public function __construct($n, $mAC = 3)
     {
         $this->nombre = $n;
-        $this->numero = $num;
+        $this->numero = $this->numTotal;
+        $this->numTotal++;
         $this->maxAlquilerConcurrente = $mAC;
     }
 
