@@ -51,7 +51,7 @@ class Cliente
         return false;
     }
 
-    public  function alquilar(Soporte $s): bool
+    public function alquilar(Soporte $s): bool
     {
         if (count($this->soportesAlquilados) < $this->maxAlquilerConcurrente) {
             if (!$this->tieneAlquilado($s)) {
