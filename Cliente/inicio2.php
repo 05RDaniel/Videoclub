@@ -1,8 +1,8 @@
 <?php
-include "Soporte.php";
-include "CintaVideo.php";
-include "DVD.php";
-include "Juego.php";
+include "../app/Soporte.php";
+include "../app/CintaVideo.php";
+include "../app/DVD.php";
+include "../app/Juego.php";
 include "Cliente.php";
 
 //instanciamos un par de objetos cliente
