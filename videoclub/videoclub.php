@@ -18,7 +18,7 @@
         }
 
         private function incluirProducto(Soporte $productos) {
-
+            
         }
 
         public function incluirCintaVideo($titulo, $precio, $duracion) {
