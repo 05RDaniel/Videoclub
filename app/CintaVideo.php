@@ -1,9 +1,9 @@
 <?php
     Class CintaVideo extends Soporte
     {
-        public function __construct($t, $n, $p, private $duracion)
+        public function __construct($t, $p, private $duracion)
         {
-            parent::__construct($t, $n, $p);
+            parent::__construct($t, $p);
         }
 
         public function muestraResumen()
