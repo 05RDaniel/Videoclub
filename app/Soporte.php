@@ -4,14 +4,14 @@
         protected $numero;
         private $precio;
         private static $IVA = 0.21;//Constante del IVA
-        private static $codigoProducto = 1;
+        private static $codigoProducto;
 
-        public function __construct($t, $n, $p)
+        public function __construct($t, $p)
         {
             $this->titulo = $t;
-            $this->numero = $n;
             $this->precio = $p;
-            $this->codigoProducto++;
+            $this->numero = self::$codigoProducto;
+            self::$codigoProducto++;
         }
 
         //Metodo para obtener el precio
