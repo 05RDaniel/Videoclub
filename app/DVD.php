@@ -4,6 +4,7 @@
         public function __construct($t, $p, public $idiomas, private $formatPantalla)
         {
             parent::__construct($t, $p);
+            parent::getCodigoProducto();
         }
 
         public function muestraResumen()

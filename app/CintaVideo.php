@@ -4,6 +4,7 @@
         public function __construct($t, $p, private $duracion)
         {
             parent::__construct($t, $p);
+            parent::getCodigoProducto();
         }
 
         public function muestraResumen()

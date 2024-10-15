@@ -4,6 +4,7 @@
         public function __construct($t, $p, public $console, private $minNumJugadores, private $maxNumJugadores)
         {
             parent::__construct($t, $p);
+            parent::getCodigoProducto();
         }
 
         //Metodo que comprueba el numero de jugadores que pueden jugar a los juegos

@@ -22,7 +22,8 @@
         }
 
         public function incluirCintaVideo($titulo, $precio, $duracion) {
-            $cinta = new CintaVideo()
+            $cinta = new CintaVideo($titulo, $precio, $duracion);
+            
         }
     }
 ?>
