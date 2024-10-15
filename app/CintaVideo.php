@@ -1,16 +1,16 @@
 <?php
-    Class CintaVideo extends Soporte
+    Class DVD extends Soporte
     {
-        public function __construct($t, $n, $p, private $duracion)
+        public function __construct($t, $p, public $idiomas, private $formatPantalla)
         {
-            parent::__construct($t, $n, $p);
+            parent::__construct($t, $p);
+            parent::getCodigoProducto();
         }
 
         public function muestraResumen()
         {
             parent::muestraResumen();
-            echo "<p>Duracion: " . $this->duracion . "</p>";
+            echo "<p>Idiomas disponibles: " . $this->idiomas . "<br>" . " Formato de la pantalla: " . $this->formatPantalla . "</p>";
         }
-
     }
 ?>

@@ -1,9 +1,11 @@
+
 <?php
     Class Juego extends Soporte
     {
-        public function __construct($t, $n, $p, public $console, private $minNumJugadores, private $maxNumJugadores)
+        public function __construct($t, $p, public $console, private $minNumJugadores, private $maxNumJugadores)
         {
-            parent::__construct($t, $n, $p);
+            parent::__construct($t, $p);
+            parent::getCodigoProducto();
         }
 
         //Metodo que comprueba el numero de jugadores que pueden jugar a los juegos
