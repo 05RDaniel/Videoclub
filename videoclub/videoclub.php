@@ -22,7 +22,7 @@
         }
 
         public function incluirCintaVideo($titulo, $precio, $duracion) {
-            
+            $cintaVideo = true;
         }
     }
 ?>
