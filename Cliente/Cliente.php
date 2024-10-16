@@ -6,11 +6,13 @@ class Cliente
     private $soportesAlquilados = [];
     private $numSoportesAlquilados;
     private $maxAlquilerConcurrente;
+    private static $numTotal = 1;
 
-    public function __construct($n, $num, $mAC = 3)
+    public function __construct($n, $mAC = 3)
     {
         $this->nombre = $n;
-        $this->numero = $num;
+        $this->numero = self::$numTotal;
+        self::$numTotal++;
         $this->maxAlquilerConcurrente = $mAC;
     }
 
@@ -49,7 +51,7 @@ class Cliente
         return false;
     }
 
-    public  function alquilar(Soporte $s): bool
+    public function alquilar(Soporte $s): bool
     {
         if (count($this->soportesAlquilados) < $this->maxAlquilerConcurrente) {
             if (!$this->tieneAlquilado($s)) {
