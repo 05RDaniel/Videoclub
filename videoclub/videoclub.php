@@ -16,6 +16,7 @@ class Videoclub
 
     private function incluirProducto(Soporte $object) {
         array_push($this->productos, $object);
+        echo "Incluido soporte".$object->getNumero()."<br>";
     }
 
     public function incluirCintaVideo($titulo, $precio, $duracion) {
@@ -42,8 +43,9 @@ class Videoclub
 
     public function listarProductos()
     {
+        echo "Listado de los ".count($this->productos)." productos<br>";
         foreach ($this->productos as $p) {
-            echo  $p->getNombre() . "<br>";
+            $p->muestraResumen();
         }
     }
 

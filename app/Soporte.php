@@ -1,10 +1,13 @@
 <?php
+    include "CintaVideo.php";
+    include "Juego.php";
+    include "DVD.php";
     class Soporte {
         public $titulo;
         protected $numero;
         private $precio;
         private static $IVA = 0.21;//Constante del IVA
-        private static $codigoProducto;
+        private static $codigoProducto = 1;
 
         public function __construct($t, $p)
         {
@@ -22,7 +25,7 @@
 
         //Metodo para obtener el codigo del soporte.
         public function getCodigoProducto() {
-            return $this->codigoProducto;
+            return self::$codigoProducto;
         }
 
         //Metodo para obtener el numero
@@ -41,7 +44,7 @@
 
         public function muestraResumen()
         {
-            echo "Numero: " . $this->getNumero() . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA() . $this->getCodigoProducto() . "</p>";
+            echo "<p>Numero: " . $this->numero . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA() . "</p>";
         }
     }
 ?>
