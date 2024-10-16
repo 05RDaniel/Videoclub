@@ -1,5 +1,8 @@
 <?php
 include "../app/Soporte.php";
+include "../app/Juego.php";
+include "../app/CintaVideo.php";
+include "../app/DVD.php";
 include "../Cliente/Cliente.php";
 class Videoclub
 {
