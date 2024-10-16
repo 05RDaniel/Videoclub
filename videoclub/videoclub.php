@@ -17,13 +17,23 @@
             $this->numSocios = $ns;
         }
 
-        private function incluirProducto(Soporte $productos) {
-            
+        private function incluirProducto(Soporte $object) {
+            array_push($this->productos, $object);
         }
 
         public function incluirCintaVideo($titulo, $precio, $duracion) {
             $cinta = new CintaVideo($titulo, $precio, $duracion);
-            
+            $this->incluirProducto($cinta);
+        }
+
+        public function incluirDVD($titulo, $precio, $idiomas, $pantalla) {
+            $dvd = new DVD($titulo, $precio, $idiomas, $pantalla);
+            $this->incluirProducto($dvd);
+        }
+
+        public function incluirJuego($titulo, $precio, $consola, $minJ, $maxJ) {
+            $juego = new Juego($titulo, $precio, $consola, $minJ, $maxJ);
+            $this->incluirProducto($juego);
         }
     }
 ?>
