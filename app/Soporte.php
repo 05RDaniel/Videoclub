@@ -2,7 +2,9 @@
     include "CintaVideo.php";
     include "Juego.php";
     include "DVD.php";
-    class Soporte {
+    /* Al hacerla abstracta conseguimos que no se pueda instanciar ningun onjeto de la propia clase */
+    /* El programa no se ve afectado ya que no estamos instanciando ningun objeto de la clase Soporte */
+    abstract class Soporte {
         public $titulo;
         protected $numero;
         private $precio;
