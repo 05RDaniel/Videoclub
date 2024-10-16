@@ -12,7 +12,7 @@
         include "Soporte.php";
         include "CintaVideo.php";
         
-        $unJuego = new CintaVideo("Driver", 26, 35, 120);
+        
 
         $unJuego->muestraResumen();
     ?>

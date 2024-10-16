@@ -24,11 +24,6 @@
             return $this->precio;
         }
 
-        //Metodo para obtener el codigo del soporte.
-        public function getCodigoProducto() {
-            return self::$codigoProducto;
-        }
-
         //Metodo para obtener el numero
         public function getNumero() 
         {
@@ -45,7 +40,7 @@
 
         public function muestraResumen()
         {
-            echo "<p>Numero: " . $this->numero . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA() . "</p>";
+            echo "Numero: " . $this->getNumero() . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA() . "</p>";
         }
     }
 ?>
