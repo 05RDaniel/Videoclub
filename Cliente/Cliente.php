@@ -77,7 +77,7 @@ class Cliente
             }
         }
         if ($found > -1){
-            unset($this->soportesAlquilados[$i]);
+            array_splice($this->soportesAlquilados,$i,1);
             $this->numSoportesAlquilados--;
             echo "Elemento devuelto<br>";
             return true;
