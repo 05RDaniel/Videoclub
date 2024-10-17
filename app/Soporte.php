@@ -30,6 +30,12 @@
             return $this->numero; 
         }
 
+        //Metodo para obtener el numero
+        public function getCodigoProducto() 
+        {
+            return $this->getCodigoProducto(); 
+        }
+
         //Metodo que calcula el precio con el IVA
         public function getPrecioIVA() 
         {
