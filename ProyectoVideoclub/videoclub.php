@@ -1,4 +1,5 @@
 <?php
+namespace Videoclub\ProyectoVideoclub;
 include_once "../app/Soporte.php";
 include_once "../app/Juego.php";
 include_once "../app/CintaVideo.php";

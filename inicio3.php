@@ -1,4 +1,6 @@
 <?php
+namespace Videoclub\ProyectoVideoclub;
+use Videoclub\ProyectoVideoclub\Videoclub;
 include_once "../videoclub/videoclub.php"; // No incluimos nada más
 
 $vc = new Videoclub("Severo 8A"); 
