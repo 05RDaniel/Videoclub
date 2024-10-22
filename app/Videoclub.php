@@ -62,21 +62,29 @@ class Videoclub
         }
     }
 
-    public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
+    public function alquilaSocioProducto($numSocio, array $numerosProductos)
     {
+        $alquilado = false;
         foreach ($this->socios as $c) {
-            if ($c->getNumero() == $numeroCliente) {
-                foreach ($this->productos as $p) {
-                    if ($p->getNumero() == $numeroSoporte) {
-                        $c->alquilar($p);
-                        echo "Soporte alquilado exitosamente<br>";
-                        $this->numTotalAlquileres++;
-                        return true;
+            if ($c->getNumero() == $numSocio) {
+                foreach ($numerosProductos as $n) {
+                    if($n->alquilado == true){
+                        $alquilado=true;
                     }
                 }
+                if ($alquilado == false){
+                    foreach ($this->productos as $p) {
+                        foreach($numerosProductos as $n){
+                            if ($p->getNumero() == $n) {
+                                $c->alquilar($p);
+                                $this->numTotalAlquileres++;
+                            }
+                        }
+                    }
+                    echo "Soportes alquilados exitosamente<br>";
+                } else {echo "Uno de los productos ya está alquilado, proceso descartado<br>";}
             }
         }
-        echo "No se ha podido alquilar el soporte<br>";
         return false;
     }
 
