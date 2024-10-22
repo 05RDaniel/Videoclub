@@ -87,4 +87,8 @@ class Videoclub
         }
     }
     }
+
+    public function getNumeTotalAlquileres(){
+        return $this->numTotalAlquileres;
+    }
 }
