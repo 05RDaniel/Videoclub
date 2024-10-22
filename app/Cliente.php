@@ -1,4 +1,9 @@
 <?php
+namespace Videoclub\app;
+include_once "VideoclubException.php";
+include_once "SoporteYaAlquiladoException.php";
+include_once "CupoSuperadoException.php";
+include_once "ClienteNoEncontrado.php";
 class Cliente
 {
     public $nombre;
@@ -54,18 +59,18 @@ class Cliente
 
     public function alquilar(Soporte $s): Cliente
     {
-        if (count($this->soportesAlquilados) < $this->maxAlquilerConcurrente) {
-            if (!$this->tieneAlquilado($s)) {
-                $this->soportesAlquilados[] = $s;
-                $this->numSoportesAlquilados++;
-                echo "Elemento añadido satisfactoriamente<br>";
-            } else {
-                echo "El elemento ya se encuentra alquilado por este usuario<br>";
-            }
-        } else {
-            echo "Número de alquileres máximo alcanzado, no es posible añadir más<br>";
+        try {
+            if (count($this->soportesAlquilados) < $this->maxAlquilerConcurrente) {
+                if (!$this->tieneAlquilado($s)) {
+                    $this->soportesAlquilados[] = $s;
+                    $this->numSoportesAlquilados++;
+                    echo "Elemento añadido satisfactoriamente<br>";
+                } throw new SoporteYaAlquiladoException();
+            } throw new CupoSuperadoException();
+        } catch (SoporteYaAlquiladoException $e){
+            echo $e->yaAlquiladoExcepcion();
         }
-        return $this;
+        
     }
 
     public function devolver(int $NumSoporte): bool 
@@ -93,3 +98,4 @@ class Cliente
             return $this;
     }
 }
+?>

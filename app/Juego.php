@@ -1,5 +1,5 @@
-
 <?php
+    namespace Videoclub\app;
     include_once "Soporte.php";
     Class Juego extends Soporte
     {

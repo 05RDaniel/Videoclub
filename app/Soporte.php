@@ -2,6 +2,7 @@
     /* Al hacerla abstracta conseguimos que no se pueda instanciar ningun onjeto de la propia clase */
     /* El programa no se ve afectado ya que no estamos instanciando ningun objeto de la clase Soporte */
     /* No es necesario implementar la interfaz Resumible en los hijos porque lo heredan automáticamente del padre */
+    namespace Videoclub\app;
     include_once "Resumible.php";
     abstract class Soporte implements Resumible{
         public $titulo;

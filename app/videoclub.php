@@ -1,9 +1,11 @@
 <?php
+namespace Videoclub\app;
 include_once "../app/Soporte.php";
 include_once "../app/Juego.php";
 include_once "../app/CintaVideo.php";
 include_once "../app/DVD.php";
 include_once "../Cliente/Cliente.php";
+include_once "../app/VideoclubException.php";
 class Videoclub
 {
     private $nombre;
@@ -76,3 +78,4 @@ class Videoclub
         return false;
     }
 }
+?>
