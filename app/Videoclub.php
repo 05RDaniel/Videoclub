@@ -4,7 +4,7 @@ include_once "../app/Soporte.php";
 include_once "../app/Juego.php";
 include_once "../app/CintaVideo.php";
 include_once "../app/DVD.php";
-include_once "../Cliente/Cliente.php";
+include_once "../app/Cliente.php";
 class Videoclub
 {
     private $nombre;

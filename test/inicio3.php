@@ -1,7 +1,6 @@
 <?php
-namespace Videoclub\app;
+include "../autoload.php";
 use Videoclub\app\Videoclub;
-include_once "../videoclub/videoclub.php"; // No incluimos nada más
 
 $vc = new Videoclub("Severo 8A"); 
 
