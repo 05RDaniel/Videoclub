@@ -59,6 +59,7 @@ class Cliente
             if (!$this->tieneAlquilado($s)) {
                 $this->soportesAlquilados[] = $s;
                 $this->numSoportesAlquilados++;
+                $s->alquilado=true;
                 echo "Elemento añadido satisfactoriamente<br>";
             } else {
                 echo "El elemento ya se encuentra alquilado por este usuario<br>";
@@ -78,6 +79,7 @@ class Cliente
             }
         }
         if ($found > -1){
+            $this->soportesAlquilados[$i]->alquilado = false;
             array_splice($this->soportesAlquilados,$i,1);
             $this->numSoportesAlquilados--;
             echo "Elemento devuelto<br>";

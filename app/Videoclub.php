@@ -12,6 +12,8 @@ class Videoclub
     private $numProductos;
     private $socios = array();
     private $numSocios;
+    private $numProductosAlquilados = 0;
+    private $numTotalAlquileres = 0;
 
     public function __construct($n)
     {
@@ -68,6 +70,7 @@ class Videoclub
                     if ($p->getNumero() == $numeroSoporte) {
                         $c->alquilar($p);
                         echo "Soporte alquilado exitosamente<br>";
+                        $this->numTotalAlquileres++;
                         return true;
                     }
                 }
@@ -75,5 +78,13 @@ class Videoclub
         }
         echo "No se ha podido alquilar el soporte<br>";
         return false;
+    }
+
+    public function getNumProductosAlquilados(){
+        foreach ($this->productos as $p) {
+            if($p->alquilado){
+                $this->numProductosAlquilados++;
+        }
+    }
     }
 }
