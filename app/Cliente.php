@@ -1,5 +1,5 @@
 <?php
-namespace Videoclub\ProyectoVideoclub;
+namespace Videoclub\app;
 class Cliente
 {
     public $nombre;

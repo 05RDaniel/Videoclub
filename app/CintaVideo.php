@@ -1,5 +1,5 @@
 <?php
-    namespace Videoclub\ProyectoVideoclub;
+    namespace Videoclub\app;
     include_once "Soporte.php";
     Class CintaVideo extends Soporte
     {
