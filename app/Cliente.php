@@ -60,7 +60,6 @@ class Cliente
                 $this->soportesAlquilados[] = $s;
                 $this->numSoportesAlquilados++;
                 $s->alquilado=true;
-                echo "Elemento añadido satisfactoriamente<br>";
             } else {
                 echo "El elemento ya se encuentra alquilado por este usuario<br>";
             }

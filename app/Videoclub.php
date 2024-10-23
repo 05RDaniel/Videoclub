@@ -1,5 +1,7 @@
 <?php
+
 namespace Videoclub\app;
+error_reporting(0);
 include_once "../app/Soporte.php";
 include_once "../app/Juego.php";
 include_once "../app/CintaVideo.php";
@@ -90,7 +92,7 @@ class Videoclub
 
     public function getNumProductosAlquilados(){
         foreach ($this->productos as $p) {
-            if($p->alquilado){
+            if($p->getAlquilado()){
                 $this->numProductosAlquilados++;
         }
     }
