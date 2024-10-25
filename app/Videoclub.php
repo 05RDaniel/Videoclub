@@ -1,5 +1,7 @@
 <?php
+
 namespace Videoclub\app;
+error_reporting(0);
 include_once "../app/Soporte.php";
 include_once "../app/Juego.php";
 include_once "../app/CintaVideo.php";
@@ -12,6 +14,8 @@ class Videoclub
     private $numProductos;
     private $socios = array();
     private $numSocios;
+    private $numProductosAlquilados = 0;
+    private $numTotalAlquileres = 0;
 
     public function __construct($n)
     {
@@ -47,10 +51,11 @@ class Videoclub
 
     public function listarProductos()
     {
-        echo "Listado de los ".count($this->productos)." productos<br>";
+        echo "<br>Listado de los ".count($this->productos)." productos<br>";
         foreach ($this->productos as $p) {
             $p->muestraResumen();
         }
+        echo "<br>";
     }
 
     public function listarSocios()
@@ -60,28 +65,53 @@ class Videoclub
         }
     }
 
-    public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
+    public function alquilaSocioProducto($numSocio, array $numerosProductos)
     {
+        $alquilado = false;
         foreach ($this->socios as $c) {
-            if ($c->getNumero() == $numeroCliente) {
-                foreach ($this->productos as $p) {
-                    if ($p->getNumero() == $numeroSoporte) {
-                        try {
-                            $c->alquilar($p);
-                            echo "Soporte alquilado exitosamente<br>";
-                        } catch (SoporteYaAlquiladoException $e) {
-                            echo $e->getMessage();
-                        } catch (CupoSuperadoException $e) {
-                            echo $e->getMessage();
-                        } catch (SoporteNoEncontradoException $e) {
-                            echo $e->getMessage();
+            if ($c->getNumero() == $numSocio) {
+                foreach ($numerosProductos as $n) {
+                    if($n->alquilado == true){
+                        $alquilado=true;
+                    }
+                }
+                if ($alquilado == false){
+                    foreach ($this->productos as $p) {
+                        foreach($numerosProductos as $n){
+                            if ($p->getNumero() == $n) {
+                                try {
+                                    $c->alquilar($p);
+                                    echo "Soporte alquilado exitosamente<br>";
+                                } catch (SoporteYaAlquiladoException $e) {
+                                    echo $e -> getMessage()."<br>";
+                                } catch (CupoSuperadoException $e) {
+                                    echo $e -> getMessage()."<br>";
+                                } catch (SoporteNoEncontradoException $e) {
+                                    echo $e -> getMessage()."<br>";
+                                }catch (ClienteNoEncontradoException $e) {
+                                    echo $e -> getMessage()."<br>";
+                                }
+                                $this->numTotalAlquileres++;
+                                return true;
+                            }
                         }
-                        return true;
                     }
                 }
             }
         }
         echo "No se ha podido alquilar el soporte<br>";
         return false;
+    }
+
+    public function getNumProductosAlquilados(){
+        foreach ($this->productos as $p) {
+            if($p->getAlquilado()){
+                $this->numProductosAlquilados++;
+        }
+    }
+    }
+
+    public function getNumeTotalAlquileres(){
+        return $this->numTotalAlquileres;
     }
 }
