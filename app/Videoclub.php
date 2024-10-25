@@ -66,8 +66,16 @@ class Videoclub
             if ($c->getNumero() == $numeroCliente) {
                 foreach ($this->productos as $p) {
                     if ($p->getNumero() == $numeroSoporte) {
-                        $c->alquilar($p);
-                        echo "Soporte alquilado exitosamente<br>";
+                        try {
+                            $c->alquilar($p);
+                            echo "Soporte alquilado exitosamente<br>";
+                        } catch (SoporteYaAlquiladoException $e) {
+                            echo $e->getMessage();
+                        } catch (CupoSuperadoException $e) {
+                            echo $e->getMessage();
+                        } catch (SoporteNoEncontradoException $e) {
+                            echo $e->getMessage();
+                        }
                         return true;
                     }
                 }

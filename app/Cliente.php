@@ -1,4 +1,8 @@
 <?php
+include_once "VideoclubException.php";
+include_once "SoporteYaAlquiladoException.php";
+include_once "CupoSuperadoException.php";
+include_once "ClienteNoEncontrado.php";
 namespace Videoclub\app;
 class Cliente
 {
@@ -61,10 +65,10 @@ class Cliente
                 $this->numSoportesAlquilados++;
                 echo "Elemento añadido satisfactoriamente<br>";
             } else {
-                echo "El elemento ya se encuentra alquilado por este usuario<br>";
+                throw new SoporteYaAlquiladoException("El soporte ya se encuentra alquilado.");
             }
         } else {
-            echo "Número de alquileres máximo alcanzado, no es posible añadir más<br>";
+            throw new CupoSuperadoException("Se ha superado el cupo de soportes.");
         }
         return $this;
     }
@@ -72,17 +76,19 @@ class Cliente
     public function devolver(int $NumSoporte): bool 
     {
         $found = -1;
-        for ($i=0;$i<count($this->soportesAlquilados);$i++){
-            if ($this->soportesAlquilados[$i]->getNumero()==$NumSoporte){
+        for ($i = 0; $i < count($this->soportesAlquilados); $i++) {
+            if ($this->soportesAlquilados[$i]->getNumero() == $NumSoporte) {
                 $found = $i;
             }
         }
-        if ($found > -1){
-            array_splice($this->soportesAlquilados,$i,1);
+        if ($found > -1) {
+            array_splice($this->soportesAlquilados, $i, 1);
             $this->numSoportesAlquilados--;
             echo "Elemento devuelto<br>";
             return true;
-        } else {echo "El elemento no está alquilado por este usuario<br>"; return false;}
+        } else {
+            throw new SoporteNoEncontradoException("El elemento no está alquilado por este usuario");
+        }
     }
 
     public function listaAlquileres(): Cliente{
