@@ -111,7 +111,19 @@ class Videoclub
     }
     }
 
-    public function getNumeTotalAlquileres(){
+    public function getNumTotalAlquileres(){
         return $this->numTotalAlquileres;
+    }
+
+    public function devolverSocioProducto(int $numSocio, int $numeroProducto){
+        $numSocio->devolver($numeroProducto)
+        return $this;
+    }
+
+    public function devolverSocioProductos(int $numSocio, array $numerosProductos){
+        foreach ($numerosProductos as $n){
+            $numSocio->devolver($n)
+        }
+        return $this;
     }
 }
