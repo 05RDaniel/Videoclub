@@ -49,7 +49,7 @@
 
         public function muestraResumen()
         {
-            echo "Numero: " . $this->getNumero() . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA() . "</p>";
+            echo "<br>Numero: " . $this->getNumero() . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA();
         }
     }
 ?>

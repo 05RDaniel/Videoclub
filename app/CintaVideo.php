@@ -12,7 +12,7 @@
         public function muestraResumen()
         {
             parent::muestraResumen();
-            echo "<p>Duracion: " . $this->duracion . "</p>";
+            echo "<br>Duracion: " . $this->duracion . "<br>";
         }
 
     }

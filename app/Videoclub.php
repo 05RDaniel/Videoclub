@@ -51,10 +51,11 @@ class Videoclub
 
     public function listarProductos()
     {
-        echo "Listado de los ".count($this->productos)." productos<br>";
+        echo "<br>Listado de los ".count($this->productos)." productos<br>";
         foreach ($this->productos as $p) {
             $p->muestraResumen();
         }
+        echo "<br>";
     }
 
     public function listarSocios()
@@ -78,15 +79,27 @@ class Videoclub
                     foreach ($this->productos as $p) {
                         foreach($numerosProductos as $n){
                             if ($p->getNumero() == $n) {
-                                $c->alquilar($p);
+                                try {
+                                    $c->alquilar($p);
+                                    echo "Soporte alquilado exitosamente<br>";
+                                } catch (SoporteYaAlquiladoException $e) {
+                                    echo $e -> getMessage()."<br>";
+                                } catch (CupoSuperadoException $e) {
+                                    echo $e -> getMessage()."<br>";
+                                } catch (SoporteNoEncontradoException $e) {
+                                    echo $e -> getMessage()."<br>";
+                                }catch (ClienteNoEncontradoException $e) {
+                                    echo $e -> getMessage()."<br>";
+                                }
                                 $this->numTotalAlquileres++;
+                                return true;
                             }
                         }
                     }
-                    echo "Soportes alquilados exitosamente<br>";
-                } else {echo "Uno de los productos ya está alquilado, proceso descartado<br>";}
+                }
             }
         }
+        echo "No se ha podido alquilar el soporte<br>";
         return false;
     }
 

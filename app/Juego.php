@@ -25,7 +25,7 @@
         public function muestraResumen()
         {
             parent::muestraResumen();
-            echo "<p>Tipo de consola: " . $this->console . "<br>" . $this->muestraJugadoresPosibles() . "</p>";
+            echo "<br>Tipo de consola: " . $this->console . "<br>" . $this->muestraJugadoresPosibles()."<br>";
         }
     }
 ?>
