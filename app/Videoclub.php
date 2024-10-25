@@ -1,5 +1,7 @@
 <?php
+
 namespace Videoclub\app;
+error_reporting(0);
 include_once "../app/Soporte.php";
 include_once "../app/Juego.php";
 include_once "../app/CintaVideo.php";
@@ -12,6 +14,8 @@ class Videoclub
     private $numProductos;
     private $socios = array();
     private $numSocios;
+    private $numProductosAlquilados = 0;
+    private $numTotalAlquileres = 0;
 
     public function __construct($n)
     {
@@ -60,28 +64,53 @@ class Videoclub
         }
     }
 
-    public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
+    public function alquilaSocioProducto($numSocio, array $numerosProductos)
     {
+        $alquilado = false;
         foreach ($this->socios as $c) {
-            if ($c->getNumero() == $numeroCliente) {
-                foreach ($this->productos as $p) {
-                    if ($p->getNumero() == $numeroSoporte) {
-                        try {
-                            $c->alquilar($p);
-                            echo "Soporte alquilado exitosamente<br>";
-                        } catch (SoporteYaAlquiladoException $e) {
-                            echo $e->getMessage();
-                        } catch (CupoSuperadoException $e) {
-                            echo $e->getMessage();
-                        } catch (SoporteNoEncontradoException $e) {
-                            echo $e->getMessage();
-                        }
-                        return true;
+            if ($c->getNumero() == $numSocio) {
+                foreach ($numerosProductos as $n) {
+                    if($n->alquilado == true){
+                        $alquilado=true;
                     }
                 }
+                if ($alquilado == false){
+                    foreach ($this->productos as $p) {
+                        foreach($numerosProductos as $n){
+                            if ($p->getNumero() == $n) {
+                                $c->alquilar($p);
+                                $this->numTotalAlquileres++;
+                            }
+                        }
+                    }
+                    echo "Soportes alquilados exitosamente<br>";
+                } else {echo "Uno de los productos ya está alquilado, proceso descartado<br>";}
             }
         }
-        echo "No se ha podido alquilar el soporte<br>";
         return false;
+    }
+
+    public function getNumProductosAlquilados(){
+        foreach ($this->productos as $p) {
+            if($p->getAlquilado()){
+                $this->numProductosAlquilados++;
+        }
+    }
+    }
+
+    public function getNumTotalAlquileres(){
+        return $this->numTotalAlquileres;
+    }
+
+    public function devolverSocioProducto(int $numSocio, int $numeroProducto){
+        $numSocio->devolver($numeroProducto)
+        return $this;
+    }
+
+    public function devolverSocioProductos(int $numSocio, array $numerosProductos){
+        foreach ($numerosProductos as $n){
+            $numSocio->devolver($n)
+        }
+        return $this;
     }
 }
