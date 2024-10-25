@@ -63,7 +63,7 @@ class Cliente
             if (!$this->tieneAlquilado($s)) {
                 $this->soportesAlquilados[] = $s;
                 $this->numSoportesAlquilados++;
-                $s->alquilado=true;
+                echo "Elemento añadido satisfactoriamente<br>";
             } else {
                 throw new SoporteYaAlquiladoException("El soporte ya se encuentra alquilado.");
             }
@@ -81,9 +81,8 @@ class Cliente
                 $found = $i;
             }
         }
-        if ($found > -1){
-            $this->soportesAlquilados[$i]->alquilado = false;
-            array_splice($this->soportesAlquilados,$i,1);
+        if ($found > -1) {
+            array_splice($this->soportesAlquilados, $i, 1);
             $this->numSoportesAlquilados--;
             echo "Elemento devuelto<br>";
             return true;
