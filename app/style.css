@@ -1,0 +1,9 @@
+#divFormulario{
+    width: 250px;
+    margin: auto;
+    border: 1px solid black;
+    padding: 20px;
+}
+input#button{
+    margin: auto;
+}
