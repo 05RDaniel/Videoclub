@@ -8,6 +8,8 @@ include_once "ClienteNoEncontrado.php";
 class Cliente
 {
     public $nombre;
+    private $usuario;
+    private $constraseña;
     private $numero;
     private $soportesAlquilados = [];
     private $numSoportesAlquilados;
