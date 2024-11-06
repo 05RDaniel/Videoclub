@@ -3,16 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
     <div id="divFormulario">
-        <form action="../php/PruebasFormularios.php" method="post">
-            <p>User: <input type="text" name="nombre" /></p>
-            <p>Password: <input type="password" name="edad" /></p>
-            <p><input type="submit" value="Log in" id="button"></p>
-          </form>
+      <form action="login.php" method="post">
+        <table>
+          <tr>
+            <td><p>User:</p></td>
+            <td><input type="text" name="usr" /></td>
+          </tr>
+          <tr>
+            <td>Password:&nbsp;</td>
+            <td><input type="password" name="pswd" /></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="submit" value="Log in"></td>
+          </tr>
+        </table>
+      </form>
     </div>
   </body>
 </html>

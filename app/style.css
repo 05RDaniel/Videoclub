@@ -3,7 +3,11 @@
     margin: auto;
     border: 1px solid black;
     padding: 20px;
+    margin-top: 37.5vh;
 }
-input#button{
-    margin: auto;
+div{
+    border: 1px solid black;
+}
+td{
+    text-align: center;
 }
