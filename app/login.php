@@ -1,9 +1,10 @@
 <?php
   if ($_POST["usr"] ==  "admin" && $_POST["pswd"] == "admin") {
-    echo("admin ha iniciado sesión");
+    header("Location: mainAdmin.php");
   } elseif ($_POST["usr"] ==  "usuario" && $_POST["pswd"] == "usuario") {
     echo("usuario ha iniciado sesión");
   } else {
-    header("Location: index.html");
+    $error = "Usuario y/o contraseña incorrectos";
+    include "index.php";
   }
 ?>

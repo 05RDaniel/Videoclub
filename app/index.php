@@ -8,6 +8,7 @@
   </head>
   <body>
     <div id="divFormulario">
+      <span><?php if (isset($error)){echo $error;} ?></span>
       <form action="login.php" method="post">
         <table>
           <tr>

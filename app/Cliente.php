@@ -1,9 +1,5 @@
 <?php
 namespace Videoclub\app;
-include_once "VideoclubException.php";
-include_once "SoporteYaAlquiladoException.php";
-include_once "CupoSuperadoException.php";
-include_once "ClienteNoEncontrado.php";
 
 class Cliente
 {
