@@ -4,15 +4,18 @@ namespace Videoclub\app;
 class Cliente
 {
     public $nombre;
+    private $usuario;
+    private $constraseña;
     private $numero;
     private $soportesAlquilados = [];
-    private $numSoportesAlquilados;
+    private $numSoportesAlquilados = 0;
     private $maxAlquilerConcurrente;
     private static $numTotal = 1;
 
     public function __construct($n, $mAC = 3)
     {
         $this->nombre = $n;
+        $this->usuario = "C" . self::$numTotal;
         $this->numero = self::$numTotal;
         self::$numTotal++;
         $this->maxAlquilerConcurrente = $mAC;
@@ -29,9 +32,24 @@ class Cliente
         return $this;
     }
 
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    public function getContraseña()
+    {
+        return $this->constraseña;
+    }
+
     public function getNumSoportesAlquilados()
     {
         return $this->numSoportesAlquilados;
+    }
+
+    public function getSoportesAlquilados()
+    {
+        return $this->soportesAlquilados;
     }
 
     public function muestraResumen()

@@ -9,7 +9,7 @@
         private $precio;
         private static $IVA = 0.21;//Constante del IVA
         private static $codigoProducto = 1;
-        public $alquilado;
+        public $alquilado = false;
 
         public function __construct($t, $p)
         {
@@ -24,6 +24,11 @@
         public function getPrecio()
         {
             return $this->precio;
+        }
+
+        public function getAlquilado()
+        {
+            return $this->alquilado;
         }
 
         //Metodo para obtener el numero

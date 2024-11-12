@@ -1,44 +1,113 @@
-<?php
-include "../autoload.php";
+<!DOCTYPE html>
+<html lang="en">
 
-use Videoclub\app\Videoclub;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+</head>
 
-session_start();
-echo ("<a href='index.php' onclick='session_destroy()'>Cerrar sesión</a>");
+<body>
+    <?php
+    include "../autoload.php";
 
-$socios = array();
-$productos = array();
+    use Videoclub\app\Videoclub;
 
-$club = new Videoclub("Maria");
+    session_start();
 
-$club->incluirSocio("Amancio Ortega");
-$club->incluirSocio("Pablo Picasso", 2);
-foreach ($club->getSocios() as $key) {
-    $socios[$key->nombre] = $key;
-}
-$_SESSION['usuario'] = $socios;
-echo ("Usuarios:<table border='1'><tr>");
-foreach ($_SESSION["usuario"] as $key) {
-    echo ("<tr><td>" . $key->nombre . "</td></tr>");
-}
-echo ("</table><br>");
+    $socios = array();
+    $productos = array();
+
+    $club = new Videoclub("Maria");
+
+    $club->incluirSocio("Amancio Ortega");
+    $club->incluirSocio("Pablo Picasso", 2);
+    $club->incluirJuego("God of War", 19.99, "PS4", 1, 1);
+    $club->incluirJuego("The Last of Us Part II", 49.99, "PS4", 1, 1);
+    $club->incluirDvd("Torrente", 4.5, "es", "16:9");
+    $club->incluirDvd("Origen", 4.5, "es,en,fr", "16:9");
+    $club->incluirDvd("El Imperio Contraataca", 3, "es,en", "16:9");
+    $club->incluirCintaVideo("Los cazafantasmas", 3.5, 107);
+    $club->incluirCintaVideo("El nombre de la Rosa", 1.5, 140);
 
 
-$club->incluirJuego("God of War", 19.99, "PS4", 1, 1);
-$club->incluirJuego("The Last of Us Part II", 49.99, "PS4", 1, 1);
-$club->incluirDvd("Torrente", 4.5, "es", "16:9");
-$club->incluirDvd("Origen", 4.5, "es,en,fr", "16:9");
-$club->incluirDvd("El Imperio Contraataca", 3, "es,en", "16:9");
-$club->incluirCintaVideo("Los cazafantasmas", 3.5, 107);
-$club->incluirCintaVideo("El nombre de la Rosa", 1.5, 140);
+    foreach ($club->getSocios() as $key) {
+        $socios[$key->nombre] = $key;
+    }
+    $_SESSION['usuario'] = $socios;
 
-foreach ($club->getProductos() as $key) {
-    $productos[$key->titulo] = $key;
-}
+    foreach ($club->getProductos() as $key) {
+        $productos[$key->titulo] = $key;
+    }
+    $_SESSION['productos'] = $productos;
+    ?>
+    <div id="close"><a href='index.php' onclick='session_destroy()'>Cerrar sesión</a></div>
+    <div id="main">
+    <div id="tables">
+        <table>
+        <tr>
+            <th colspan="3">Usuarios</th>
+        </tr>
+        <tr>
+            <td>Nombre</td>
+            <td>Usuario</td>
+            <td>Alquileres actuales</td>
+        </tr>
+        <?php foreach ($_SESSION["usuario"] as $key) {
+            $alq = $key->getNumSoportesAlquilados();
+            echo ("<tr><td rowspan=" . ($alq + 1) . ">" . $key->nombre . "</td><td rowspan=" . ($alq + 1) . ">" . $key->getUsuario() . "</td>");
+            if ($alq == 0) {
+                echo ("<td>No hay soportes alquilados actualmente</td>");
+            } else {
+                foreach ($key->getSoportesAlquilados() as $e) {
+                    echo ("<tr><td>" . $e->titulo . "</td></tr>");
+                }
+            }
+            echo ("</tr>");
+        } ?>
+    </table>
+    </div>
+    <br>
+    <div id="tables">
+    <table>
+        <tr>
+            <th colspan="2">Productos</th>
+        </tr>
+        <tr>
+            <td>Nombre</td>
+            <td>Precio</td>
+        </tr>
+        <?php foreach ($_SESSION["productos"] as $key) {
+            echo ("<tr><td>" . $key->titulo . "</td><td>" . number_format($key->getPrecioIVA(), 2) . "€</td></tr>");
+        } ?>
+    </table>
+    </div>
+    </div>
 
-$_SESSION['productos'] = $productos;
-echo ("Productos:<table border='1'>");
-foreach ($_SESSION["productos"] as $key) {
-    echo ("<tr><td>" . $key->titulo . "</td></tr>");
-}
-echo ("</table>");
+    <style>
+        #close {
+            text-align: right;
+        }
+
+        #main{
+            display: block;
+        }
+
+        #tables {
+            display: grid;
+            place-items: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: solid 1px black;
+            width: 25vw;
+        }
+    </style>
+</body>
+
+</html>
