@@ -14,6 +14,7 @@ class Cliente
     private $maxAlquilerConcurrente;
     private static $numTotal = 1;
 
+    
     public function __construct($n, $mAC = 3)
     {
         $this->nombre = $n;
