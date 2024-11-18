@@ -41,13 +41,15 @@
         $productos[$key->titulo] = $key;
     }
     $_SESSION['productos'] = $productos;
+
+    $usuario = $_POST['usuario'];
     ?>
     <div id="close"><a href='index.php' onclick='session_destroy()'>Cerrar sesión</a></div>
     <div id="main">
     <div id="tables">
         <table>
         <tr>
-            <th colspan="3">Usuarios</th>
+            <th colspan="3"><?php $usuario ?></th>
         </tr>
         <tr>
             <td>Nombre</td>

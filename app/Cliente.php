@@ -5,17 +5,18 @@ class Cliente
 {
     public $nombre;
     private $usuario;
-    private $constraseña;
+    private $contraseña;
     private $numero;
     private $soportesAlquilados = [];
     private $numSoportesAlquilados = 0;
     private $maxAlquilerConcurrente;
     private static $numTotal = 1;
 
-    public function __construct($n, $mAC = 3)
+    public function __construct($n, $pswd, $mAC = 3)
     {
         $this->nombre = $n;
         $this->usuario = "C" . self::$numTotal;
+        $this->contraseña = $pswd;
         $this->numero = self::$numTotal;
         self::$numTotal++;
         $this->maxAlquilerConcurrente = $mAC;
@@ -39,7 +40,7 @@ class Cliente
 
     public function getContraseña()
     {
-        return $this->constraseña;
+        return $this->contraseña;
     }
 
     public function getNumSoportesAlquilados()
