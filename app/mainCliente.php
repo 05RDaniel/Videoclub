@@ -12,16 +12,16 @@
     <?php
     include "../autoload.php";
 
-    use Videoclub\app\Videoclub;
+use Videoclub\app\Cliente;
+use Videoclub\app\Videoclub;
 
     session_start();
 
-    $socios = array();
     $productos = array();
 
     $club = new Videoclub("Maria");
 
-    $club->incluirSocio("Amancio Ortega","amancio");
+    $club->incluirSocio("Amancio","amancio");
     $club->incluirSocio("Pablo Picasso","pablo", 2);
     $club->incluirJuego("God of War", 19.99, "PS4", 1, 1);
     $club->incluirJuego("The Last of Us Part II", 49.99, "PS4", 1, 1);
@@ -30,63 +30,23 @@
     $club->incluirDvd("El Imperio Contraataca", 3, "es,en", "16:9");
     $club->incluirCintaVideo("Los cazafantasmas", 3.5, 107);
     $club->incluirCintaVideo("El nombre de la Rosa", 1.5, 140);
+    $club->listarProductos();
+    $alquileres = [2,3];
+    $club->alquilaSocioProducto(1,$alquileres);
 
 
+    $usuario = isset($_GET['usuario']) ? htmlspecialchars($_GET['usuario']): null;
+    $usr = new Cliente("Pepe","pepe");
     foreach ($club->getSocios() as $key) {
-        $socios[$key->nombre] = $key;
+        if ($key->nombre == $usuario) {
+            $usr = $key;
+        }
     }
-    $_SESSION['usuario'] = $socios;
-
-    foreach ($club->getProductos() as $key) {
-        $productos[$key->titulo] = $key;
-    }
-    $_SESSION['productos'] = $productos;
-
-    $usuario = $_POST['usuario'];
+    $usr->listaAlquileres();
     ?>
     <div id="close"><a href='index.php' onclick='session_destroy()'>Cerrar sesión</a></div>
-    <div id="main">
-    <div id="tables">
-        <table>
-        <tr>
-            <th colspan="3"><?php $usuario ?></th>
-        </tr>
-        <tr>
-            <td>Nombre</td>
-            <td>Usuario</td>
-            <td>Contraseña</td>
-            <td>Alquileres actuales</td>
-        </tr>
-        <?php foreach ($_SESSION["usuario"] as $key) {
-            $alq = $key->getNumSoportesAlquilados();
-            echo ("<tr><td rowspan=" . ($alq + 1) . ">" . $key->nombre . "</td><td rowspan=" . ($alq + 1) . ">" . $key->getUsuario() . "</td><td rowspan=" . ($alq + 1) . ">" . $key->getContraseña() . "</td>");
-            if ($alq == 0) {
-                echo ("<td>No hay soportes alquilados actualmente</td>");
-            } else {
-                foreach ($key->getSoportesAlquilados() as $e) {
-                    echo ("<tr><td>" . $e->titulo . "</td></tr>");
-                }
-            }
-            echo ("</tr>");
-        } ?>
-    </table>
-    </div>
-    <br>
-    <div id="tables">
-    <table>
-        <tr>
-            <th colspan="2">Productos</th>
-        </tr>
-        <tr>
-            <td>Nombre</td>
-            <td>Precio</td>
-        </tr>
-        <?php foreach ($_SESSION["productos"] as $key) {
-            echo ("<tr><td>" . $key->titulo . "</td><td>" . number_format($key->getPrecioIVA(), 2) . "€</td></tr>");
-        } ?>
-    </table>
-    </div>
-    </div>
+    <div id="main">Bienvenido <?php echo ($usr->nombre) ?>, tienes <?php echo $usr->getNumSoportesAlquilados() ?> productos alquilados</div>
+    
 
     <style>
         #close {

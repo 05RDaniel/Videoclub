@@ -47,9 +47,9 @@ class Videoclub
         $this->incluirProducto($juego);
     }
 
-    public function incluirSocio($n, $mAC = 3)
+    public function incluirSocio($n, $pswd, $mAC = 3)
     {
-        $s = new Cliente($n, $mAC);
+        $s = new Cliente($n, $pswd, $mAC);
         array_push($this->socios, $s);
         $this->numSocios++;
     }
@@ -86,7 +86,6 @@ class Videoclub
                             if ($p->getNumero() == $n) {
                                 try {
                                     $c->alquilar($p);
-                                    echo "Soporte alquilado exitosamente<br>";
                                 } catch (SoporteYaAlquiladoException $e) {
                                     echo $e -> getMessage()."<br>";
                                 } catch (CupoSuperadoException $e) {
@@ -97,14 +96,13 @@ class Videoclub
                                     echo $e -> getMessage()."<br>";
                                 }
                                 $this->numTotalAlquileres++;
-                                return true;
                             }
                         }
                     }
+                    return true;
                 }
             }
         }
-        echo "No se ha podido alquilar el soporte<br>";
         return false;
     }
 
