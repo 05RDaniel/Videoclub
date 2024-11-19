@@ -1,12 +1,10 @@
 <?php
 
 namespace Videoclub\app;
+
+use BadFunctionCallException;
+
 error_reporting(0);
-include_once "../app/Soporte.php";
-include_once "../app/Juego.php";
-include_once "../app/CintaVideo.php";
-include_once "../app/DVD.php";
-include_once "../app/Cliente.php";
 class Videoclub
 {
     private $nombre;
@@ -22,9 +20,16 @@ class Videoclub
         $this->nombre = $n;
     }
 
+    public function getSocios(){
+        return $this->socios;
+    }
+
+    public function getProductos(){
+        return $this->productos;
+    }
+
     private function incluirProducto(Soporte $object) {
         array_push($this->productos, $object);
-        echo "Incluido soporte".$object->getNumero()."<br>";
     }
 
     public function incluirCintaVideo($titulo, $precio, $duracion) {
@@ -81,7 +86,6 @@ class Videoclub
                             if ($p->getNumero() == $n) {
                                 try {
                                     $c->alquilar($p);
-                                    echo "Soporte alquilado exitosamente<br>";
                                 } catch (SoporteYaAlquiladoException $e) {
                                     echo $e -> getMessage()."<br>";
                                 } catch (CupoSuperadoException $e) {
@@ -92,14 +96,13 @@ class Videoclub
                                     echo $e -> getMessage()."<br>";
                                 }
                                 $this->numTotalAlquileres++;
-                                return true;
                             }
                         }
                     }
+                    return true;
                 }
             }
         }
-        echo "No se ha podido alquilar el soporte<br>";
         return false;
     }
 
