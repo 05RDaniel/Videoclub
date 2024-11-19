@@ -3,14 +3,13 @@
     /* El programa no se ve afectado ya que no estamos instanciando ningun objeto de la clase Soporte */
     /* No es necesario implementar la interfaz Resumible en los hijos porque lo heredan automáticamente del padre */
     namespace Videoclub\app;
-    include_once "Resumible.php";
     abstract class Soporte implements Resumible{
         public $titulo;
         protected $numero;
         private $precio;
         private static $IVA = 0.21;//Constante del IVA
         private static $codigoProducto = 1;
-        public $alquilado;
+        public $alquilado = false;
 
         public function __construct($t, $p)
         {
@@ -25,6 +24,11 @@
         public function getPrecio()
         {
             return $this->precio;
+        }
+
+        public function getAlquilado()
+        {
+            return $this->alquilado;
         }
 
         //Metodo para obtener el numero
@@ -49,7 +53,7 @@
 
         public function muestraResumen()
         {
-            echo "<br>Numero: " . $this->getNumero() . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA();
+            echo "<br>Título: " . $this->titulo . "<br>" . "Numero: " . $this->getNumero() . "<br>" . "Precio: " . $this->getPrecio() . "<br>" . "Precio con iva: " . $this->getPrecioIVA();
         }
     }
 ?>
