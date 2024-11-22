@@ -1,0 +1,44 @@
+#header{
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    width: 100%;
+}
+
+button#icon{
+    width: 50px;
+}
+
+img{
+    width: 50%;
+}
+
+#close {
+    order: 1;
+}
+
+#main{
+    display: block;
+}
+
+#tables {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:flex-start;
+    padding: 0% 10vw;
+}
+
+table {
+    border-collapse: collapse;
+    width: 33%;
+}
+
+td {
+    border: solid 1px black;
+    height: fit-content;
+    text-align: center;
+}
